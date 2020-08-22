@@ -1,0 +1,33 @@
+{
+	"name": "aix-desktop-actions",
+	"displayName": "AIX Studio Desktop Actions",
+	"description": "The Actions panel in AIX Studio 2 for desktop",
+	"publisher": "aixstudio",
+	"author": {
+		"name": "AIX Studio"
+	},
+	"license": "MIT",
+	"version": "0.1.0",
+	"activationEvents": [
+		"onView:buttons",
+		"onCommand:vscode-buttons:runCommand"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"views": {
+			"explorer": [
+				{
+					"id": "buttons",
+					"name": "AIX Studio Actions"
+				}
+			]
+		},
+		"commands": [
+		    {
+		        "command": "vscode-buttons.runCommand",
+		        "title": "Run an action",
+		        "category": "Buttons"
+		    }
+		]
+	}
+}

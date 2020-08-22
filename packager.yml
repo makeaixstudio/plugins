@@ -1,0 +1,35 @@
+name: Packager
+on:
+  push:
+    branches: [master]
+jobs:
+  package:
+    name: Package actions
+    runs-on: ubuntu-latest
+    if: "contains(toJSON(github.event.commits.*.message), '[package]')"
+    steps:
+    - uses: actions/checkout@v2
+    - name: Navigate to 'actions'
+      run: cd actions
+    - name: Run vsce package on 'actions'
+      uses: lannonbr/vsce-action@2.0.0
+      with:
+        args: package
+    - name: Create a Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
+        draft: true
+    - name: Upload a Release Asset
+      uses: actions/upload-release-asset@v1.0.2
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url:  ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ steps.step1.outputs.test }}
+        asset_name: aix-desktop-actions.vsix
+        asset_content_type: application/octet-stream

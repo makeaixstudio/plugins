@@ -33,8 +33,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}	
       with:	
         upload_url:  ${{ steps.create_release.outputs.upload_url }}	
-        asset_path: ./aix-actions.vsix	
-        asset_name: aix-actions.vsix	
+        asset_path: ./actions/aix-actions.vsix
+        asset_name: aix-actions.vsix
         asset_content_type: application/octet-stream	
     - name: Build javalang	
       run: |	
@@ -46,6 +46,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}	
       with:	
         upload_url:  ${{ steps.create_release.outputs.upload_url }}	
-        asset_path: ./javalang.vsix
-        asset_name: javalang.vsix	
+        asset_path: ./javalang/javalang.vsix
+        asset_name: javalang.vsix
         asset_content_type: application/octet-stream

@@ -30,6 +30,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url:  ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ steps.step1.outputs.test }}
-        asset_name: aix-desktop-actions.vsix
+        asset_path: ./aix-desktop-actions.vsix
+        asset_name: aix-actions.vsix
+        asset_content_type: application/octet-stream
+    - name: Navigate to 'javalang'
+      run: cd ../javalang
+    - name: Run vsce package on 'javalang'
+      uses: lannonbr/vsce-action@2.0.0
+      with:
+        args: package
+    - name: Upload a Release Asset
+      uses: actions/upload-release-asset@v1.0.2
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url:  ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./vscode-javac.vsix
+        asset_name: javalang.vsix
         asset_content_type: application/octet-stream

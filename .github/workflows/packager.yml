@@ -9,12 +9,14 @@ jobs:
     if: "contains(toJSON(github.event.commits.*.message), '[package]')"
     steps:
     - uses: actions/checkout@v2
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v1.4.3
+    - name: Set up VSCE
+      run: npm install -g vsce
     - name: Navigate to 'actions'
       run: cd actions
-    - name: Run vsce package on 'actions'
-      uses: lannonbr/vsce-action@2.0.0
-      with:
-        args: package
+    - name: Build 'actions'
+      run: vsce package
     - name: Create a Release
       id: create_release
       uses: actions/create-release@v1
@@ -35,10 +37,8 @@ jobs:
         asset_content_type: application/octet-stream
     - name: Navigate to 'javalang'
       run: cd ../javalang
-    - name: Run vsce package on 'javalang'
-      uses: lannonbr/vsce-action@2.0.0
-      with:
-        args: package
+    - name: Build 'javalang'
+      run: vsce package
     - name: Upload a Release Asset
       uses: actions/upload-release-asset@v1.0.2
       env:

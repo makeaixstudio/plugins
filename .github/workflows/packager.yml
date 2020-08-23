@@ -13,7 +13,7 @@ jobs:
       uses: actions/setup-node@v1.4.3
     - name: Set up VSCE
       run: npm install -g vsce
-    - name: Build 'javalang'
+    - name: Build actions
       run: |
         cd actions
         vsce package
@@ -35,7 +35,7 @@ jobs:
         asset_path: ./aix-desktop-actions.vsix
         asset_name: aix-actions.vsix
         asset_content_type: application/octet-stream
-    - name: Build 'javalang'
+    - name: Build javalang
       run: |
         cd ../javalang
         vsce package

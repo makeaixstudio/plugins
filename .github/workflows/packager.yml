@@ -1,4 +1,4 @@
-name: Packager
+name: Package extensions
 on:
   push:
     branches: [master]
@@ -13,10 +13,10 @@ jobs:
       uses: actions/setup-node@v1.4.3
     - name: Set up VSCE
       run: npm install -g vsce
-    - name: Navigate to 'actions'
-      run: cd actions
-    - name: Build 'actions'
-      run: vsce package
+    - name: Build 'javalang'
+      run: |
+        cd actions
+        vsce package
     - name: Create a Release
       id: create_release
       uses: actions/create-release@v1
@@ -35,10 +35,10 @@ jobs:
         asset_path: ./aix-desktop-actions.vsix
         asset_name: aix-actions.vsix
         asset_content_type: application/octet-stream
-    - name: Navigate to 'javalang'
-      run: cd ../javalang
     - name: Build 'javalang'
-      run: vsce package
+      run: |
+        cd ../javalang
+        vsce package
     - name: Upload a Release Asset
       uses: actions/upload-release-asset@v1.0.2
       env:

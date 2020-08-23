@@ -13,6 +13,9 @@
 		"onCommand:vscode-buttons:runCommand"
 	],
 	"main": "./out/extension.js",
+	"engines": {
+		"vscode": "^1.37.0"
+	},
 	"contributes": {
 		"views": {
 			"explorer": [

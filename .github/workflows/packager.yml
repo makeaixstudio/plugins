@@ -38,7 +38,7 @@ jobs:
         asset_content_type: application/octet-stream	
     - name: Build javalang	
       run: |	
-        cd ~/javalang	
+        cd javalang	
         vsce package -o javalang.vsix
     - name: Upload a Release Asset	
       uses: actions/upload-release-asset@v1.0.2	

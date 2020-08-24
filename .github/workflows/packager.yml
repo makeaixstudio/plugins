@@ -49,3 +49,16 @@ jobs:
         asset_path: ./javalang/javalang.vsix
         asset_name: javalang.vsix
         asset_content_type: application/octet-stream
+    - name: Build welcomescreen
+      run: |	
+        cd welcomescreen
+        vsce package -o welcomescreen.vsix
+    - name: Upload a Release Asset	
+      uses: actions/upload-release-asset@v1.0.2	
+      env:	
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}	
+      with:	
+        upload_url:  ${{ steps.create_release.outputs.upload_url }}	
+        asset_path: ./welcomescreen/welcomescreen.vsix
+        asset_name: welcomescreen.vsix
+        asset_content_type: application/octet-stream

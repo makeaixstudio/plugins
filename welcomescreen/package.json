@@ -1,0 +1,18 @@
+{
+	"name": "aix-welcome",
+	"displayName": "AIX Welcome Screen",
+	"description": "The AIX Studio welcome screen",
+	"publisher": "aixstudio",
+	"author": {
+		"name": "AIX Studio"
+	},
+	"license": "MIT",
+	"version": "0.1.0",
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"main": "./extension.js",
+	"engines": {
+		"vscode": "^1.37.0"
+	}
+}
